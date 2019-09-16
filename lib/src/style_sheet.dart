@@ -40,6 +40,7 @@ class MarkdownStyleSheet {
     this.codeblockDecoration,
     this.horizontalRuleDecoration,
     this.textScaleFactor = 1.0,
+    this.pAlignment = WrapAlignment.start,
   }) : _styles = <String, TextStyle>{
           'a': a,
           'p': p,
@@ -113,6 +114,7 @@ class MarkdownStyleSheet {
           top: BorderSide(width: 5.0, color: Colors.grey.shade300),
         ),
       ),
+      pAlignment: WrapAlignment.start,
     );
   }
 
@@ -246,6 +248,7 @@ class MarkdownStyleSheet {
           top: BorderSide(width: 5.0, color: Colors.grey.shade300),
         ),
       ),
+      pAlignment: WrapAlignment.start,
     );
   }
 
@@ -283,6 +286,7 @@ class MarkdownStyleSheet {
     Decoration codeblockDecoration,
     Decoration horizontalRuleDecoration,
     double textScaleFactor,
+    WrapAlignment pAlignment,
   }) {
     return MarkdownStyleSheet(
       a: a ?? this.a,
@@ -316,6 +320,7 @@ class MarkdownStyleSheet {
       codeblockDecoration: codeblockDecoration ?? this.codeblockDecoration,
       horizontalRuleDecoration: horizontalRuleDecoration ?? this.horizontalRuleDecoration,
       textScaleFactor: textScaleFactor ?? this.textScaleFactor,
+      pAlignment: pAlignment ?? this.pAlignment,
     );
   }
 
@@ -451,6 +456,9 @@ class MarkdownStyleSheet {
   // The text scale factor to use in textual elements
   final double textScaleFactor;
 
+  /// The alignment for `p` elements
+  final WrapAlignment pAlignment;
+
   /// A [Map] from element name to the corresponding [TextStyle] object.
   Map<String, TextStyle> get styles => _styles;
   Map<String, TextStyle> _styles;
@@ -490,7 +498,8 @@ class MarkdownStyleSheet {
         typedOther.codeblockPadding == codeblockPadding &&
         typedOther.codeblockDecoration == codeblockDecoration &&
         typedOther.horizontalRuleDecoration == horizontalRuleDecoration &&
-        typedOther.textScaleFactor == textScaleFactor;
+        typedOther.textScaleFactor == textScaleFactor &&
+        typedOther.pAlignment == pAlignment;
   }
 
   @override
@@ -527,6 +536,7 @@ class MarkdownStyleSheet {
       codeblockDecoration,
       horizontalRuleDecoration,
       textScaleFactor,
+      pAlignment,
     ]);
   }
 }

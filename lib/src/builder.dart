@@ -441,9 +441,16 @@ class MarkdownBuilder implements md.NodeVisitor {
     if (_inlines.isEmpty) return;
 
     final _InlineElement inline = _inlines.single;
+    WrapAlignment alignment = WrapAlignment.start;
+    // Use alignment only for `p` elements, because if we have others, for
+    // example list, it doesn't look good with centering a number and a text.
+    if (inline.tag == 'p') {
+      alignment = styleSheet.pAlignment;
+    }
     if (inline.children.isNotEmpty) {
       List<Widget> mergedInlines = _mergeInlineChildren(inline.children);
       final Wrap wrap = Wrap(
+        alignment: alignment,
         crossAxisAlignment: WrapCrossAlignment.center,
         children: mergedInlines,
       );
